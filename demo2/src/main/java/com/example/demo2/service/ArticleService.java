@@ -36,4 +36,9 @@ public class ArticleService {
     public void insert(Article article){
         articleRepository.save(article);
     }
+
+    public List<Article> findArticleByClassifyName(String classifyName){
+        return articleRepository.findAllByArticleClassifyLike("%" + classifyName + "%");
+    }
+
 }

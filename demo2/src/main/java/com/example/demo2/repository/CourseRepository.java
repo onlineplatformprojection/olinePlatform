@@ -26,4 +26,6 @@ public interface CourseRepository extends JpaRepository<Course, Integer> {
 	@Query(value = "select * from course order by RAND() limit 5", nativeQuery = true)
 	List<Course> findCoursesRandom();
 
+	List<Course> findByCourseClassifyLike(String classifyName);
+
 }

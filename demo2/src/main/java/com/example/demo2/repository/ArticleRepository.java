@@ -22,8 +22,10 @@ public interface ArticleRepository extends JpaRepository<Article, Integer> {
 	 */
 	List<Article> findAllByArticleTitleLikeOrderByPubDate(String keyWord) ;
 
-	void deleteById(Integer id) ;
+	void deleteByArticleId(Integer id) ;
 
 	List<Article> findAllByUserId(Long userId) ;
+
+	List<Article> findAllByArticleClassifyLike(String name);
 
 }

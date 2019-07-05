@@ -13,16 +13,20 @@ public class ClassifyService {
 	@Resource
 	ClassifyRepository classifyRepository;
 
-	List<Classify> findAllClassify(){
+	public List<Classify> findAllClassify(){
 		return classifyRepository.findAll();
 	}
 
-	void save(Classify classify){
+	public void save(Classify classify){
 		classifyRepository.save(classify);
 	}
 
-	Classify findClassifyByName(String name){
+	public Classify findClassifyByName(String name){
 		return classifyRepository.findByClassifyName(name);
+	}
+
+	public boolean exitClassifyByName(String name){
+		return classifyRepository.existsByClassifyName(name);
 	}
 
 }

@@ -42,6 +42,9 @@ public class CourseService {
         courseRepository.save(course);
     }
 
+    public List<Course> findCourseByClassifyName(String classifyName){
+        return courseRepository.findByCourseClassifyLike("%" + classifyName + "%" );
+    }
 
 
 

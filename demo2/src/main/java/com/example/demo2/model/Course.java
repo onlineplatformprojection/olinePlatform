@@ -24,6 +24,24 @@ public class Course {
 	private String introduce;
 	@Column(name = "c_img", nullable = false)
 	private String img;
+	@Column(name = "a_classify")
+	private String courseClassify;
+
+	public String getIntroduce() {
+		return introduce;
+	}
+
+	public void setIntroduce(String introduce) {
+		this.introduce = introduce;
+	}
+
+	public String getCourseClassify() {
+		return courseClassify;
+	}
+
+	public void setCourseClassify(String courseClassify) {
+		this.courseClassify = courseClassify;
+	}
 
 	public Course(){}
 

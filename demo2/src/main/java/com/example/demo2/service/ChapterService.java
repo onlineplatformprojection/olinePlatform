@@ -17,7 +17,7 @@ public class ChapterService {
         return chapterRepository.findAllByCourseId(courseId) ;
     }
     public Chapter findChapterById(Integer id){
-        return chapterRepository.findByChaperId(id) ;
+        return chapterRepository.findByChapterId(id) ;
     }
     public List<Chapter> findChapterByCourseId(int id){
         return chapterRepository.findAllByCourseId(id);

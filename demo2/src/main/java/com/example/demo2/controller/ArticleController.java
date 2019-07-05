@@ -1,9 +1,12 @@
 package com.example.demo2.controller;
 
 
+import antlr.StringUtils;
 import com.example.demo2.model.Article;
+import com.example.demo2.model.Classify;
 import com.example.demo2.model.User;
 import com.example.demo2.service.ArticleService;
+import com.example.demo2.service.ClassifyService;
 import com.example.demo2.service.RemarkService;
 import com.example.demo2.service.UserService;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -22,16 +25,30 @@ public class ArticleController {
     UserService userService ;
     @Resource
     RemarkService remarkService ;
+    @Resource
+    ClassifyService classifyService;
 
 
+    //文章发表
     @RequestMapping("/article_pub")
-    public Map articlePub(@RequestParam("userId")long userId, @RequestParam("title")String title,@RequestParam("articleContent")String articleContent){
+    public Map articlePub(@RequestParam("userId")long userId, @RequestParam("title")String title,@RequestParam("articleContent")String articleContent,
+                          @RequestParam("classify")String classify){
         Map map = new HashMap() ;
         Article article = new Article();
         article.setUserId(userId);
         article.setArticleTitle(title);
         article.setArticleContent(articleContent);
         article.setPubDate(new Timestamp(new Date().getTime()));
+        if(classify != null & classify.isEmpty()){
+            article.setArticleClassify(classify);
+
+            //如果不存在这个类别就新建
+            if (!classifyService.exitClassifyByName(classify)){
+                Classify classify1 = new Classify(classify);
+                classifyService.save(classify1);
+            }
+        }
+
         User user = userService.findUserById(userId) ;
         articleService.insert(article);
         map.put("title",title) ;
@@ -113,4 +130,10 @@ public class ArticleController {
         map.put("error",0) ;
         return map ;
     }
+    //分类文章搜索
+    @RequestMapping("/article_cls")
+    public List<Article> article_cls(@RequestParam("clsName") String clsName){
+        return articleService.findArticleByClassifyName(clsName);
+    }
+
 }

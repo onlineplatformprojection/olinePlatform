@@ -19,7 +19,7 @@ public class VideoService {
 	}
 
 	public Video findVideoById(int id) {
-		return videoRepository.findById(id);
+		return videoRepository.findByVideoId(id);
 	}
 
 	public Video getVideoByVideoName(String videoName) {

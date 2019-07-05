@@ -7,14 +7,14 @@ import java.util.List;
 
 public class ChapterDao {
 
-	private int chaperId;
-	private String chaperName;
+	private int chapterId;
+	private String chapterName;
 	private int courseId;
 	//List<Video> videoList = new ArrayList<>();
 
-	public ChapterDao(int chaperId, String chaperName, int courseId) {
-		this.chaperId = chaperId;
-		this.chaperName = chaperName;
+	public ChapterDao(int chapterId, String chapterName, int courseId) {
+		this.chapterId = chapterId;
+		this.chapterName = chapterName;
 		this.courseId = courseId;
 		//this.videoList = videoList;
 	}

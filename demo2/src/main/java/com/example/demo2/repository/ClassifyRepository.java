@@ -11,4 +11,6 @@ public interface ClassifyRepository extends JpaRepository<Classify, Integer> {
 
 	Classify findByClassifyName(String name);
 
+	boolean existsByClassifyName(String name);
+
 }

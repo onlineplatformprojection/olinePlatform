@@ -21,6 +21,16 @@ public class Article {
 	private long userId;
 	@Column(name = "a_publish_date" )
 	private Timestamp pubDate;
+	@Column(name = "a_classify")
+	private String articleClassify;
+
+	public String getArticleClassify() {
+		return articleClassify;
+	}
+
+	public void setArticleClassify(String articleClassify) {
+		this.articleClassify = articleClassify;
+	}
 
 	public Article(){}
 

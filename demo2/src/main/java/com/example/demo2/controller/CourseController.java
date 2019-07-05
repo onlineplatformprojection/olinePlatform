@@ -3,14 +3,17 @@ package com.example.demo2.controller;
 import com.example.demo2.model.Chapter;
 import com.example.demo2.model.Course;
 import com.example.demo2.model.Evaluate;
+import com.example.demo2.model.Purchase;
 import com.example.demo2.service.ChapterService;
 import com.example.demo2.service.CourseService;
 import com.example.demo2.service.EvaluateService;
+import com.example.demo2.service.PurchaseService;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -19,12 +22,13 @@ import java.util.Map;
 public class CourseController {
 
 	@Resource
-	CourseService courseService;
+	private CourseService courseService;
 	@Resource
 	private ChapterService chapterService;
 	@Resource
 	private EvaluateService evaluateService;
-
+	@Resource
+	private PurchaseService purchaseService;
 
 
 	//首页课程
@@ -59,4 +63,22 @@ public class CourseController {
 	public List<Course> course_good(){
 		return courseService.findCourseRandom();
 	}
+
+	//课程分类搜搜
+	@RequestMapping("/course_cls")
+	public List<Course> course_cls(@RequestParam("clsName") String clsName){
+		return courseService.findCourseByClassifyName(clsName);
+	}
+
+	//搜索我的课程
+	@RequestMapping("/course_get")
+	public List<Course> course_get(@RequestParam("userId") long userId){
+		List<Course> courseList = new ArrayList<>();
+		List<Purchase> purchaseList = purchaseService.listByUserId(userId);
+		for (int i = 0; i < purchaseList.size(); i++) {
+			courseList.add(courseService.findCourseById(purchaseList.get(i).getCourseId()));
+		}
+		return courseList;
+	}
+
 }

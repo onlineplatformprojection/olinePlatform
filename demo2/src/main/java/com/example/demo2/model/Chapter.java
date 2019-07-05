@@ -11,28 +11,28 @@ import javax.persistence.Table;
 public class Chapter {
 	@Id
 	@Column(name = "chap_id", nullable = false)
-	private int chaperId;
+	private int chapterId;
 	@Column(name = "chap_name", nullable = false)
-	private String chaperName;
+	private String chapterName;
 	@Column(name = "c_id", nullable = false)
 	private int courseId;
 
 	public Chapter(){}
 
 	public int getChaperId() {
-		return chaperId;
+		return chapterId;
 	}
 
-	public void setChaperId(int chaperId) {
-		this.chaperId = chaperId;
+	public void setChaperId(int chapterId) {
+		this.chapterId = chapterId;
 	}
 
 	public String getChaperName() {
-		return chaperName;
+		return chapterName;
 	}
 
-	public void setChaperName(String chaperName) {
-		this.chaperName = chaperName;
+	public void setChaperName(String chapterName) {
+		this.chapterName = chapterName;
 	}
 
 	public int getCourseId() {

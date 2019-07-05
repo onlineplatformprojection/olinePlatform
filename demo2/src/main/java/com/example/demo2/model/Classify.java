@@ -6,13 +6,15 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "class")
+@Table(name = "classify")
 public class Classify {
 	@Id
-	@Column(name = "cls_id",nullable = false)
+	@Column(name = "cls_id")
 	private int classifyId;
-	@Column(name = "cls_name",nullable = false)
+	@Column(name = "cls_name")
 	private String classifyName;
+
+	public Classify(){}
 
 	public Classify(String classifyName) {
 		this.classifyName = classifyName;
