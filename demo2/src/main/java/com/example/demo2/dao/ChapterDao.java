@@ -11,7 +11,7 @@ public class ChapterDao {
 	private int chapterId;
 	private String chapterName;
 	private int courseId;
-	List<Video> videoList;
+	private List<Video> videoList;
 
 	public ChapterDao(Chapter chapter) {
 		this.chapterId = chapter.getChaperId();

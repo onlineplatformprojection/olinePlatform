@@ -20,8 +20,8 @@ public class EvaluateService {
         return evaluateRepository.findAllByCourseIdOrderByPubDate(courseId);
     }
 
-    public List<Evaluate> listByUserId(Long userId){
-        return evaluateRepository.findAllByUserIdOrderByPubDate(userId);
+    public List<Evaluate> listByUserId(String userName){
+        return evaluateRepository.findAllByUserNameOrderByPubDate(userName);
     }
 
 

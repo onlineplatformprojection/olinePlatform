@@ -18,11 +18,12 @@ public interface EvaluateRepository extends JpaRepository<Evaluate, Integer> {
 	List<Evaluate> findAllByCourseIdOrderByPubDate(Integer courseId) ;
 
 	/**
-	 * 根据用户Id查找评价,按日期排序
-	 * @param userId
+	 * 根据用户Name查找评价,按日期排序
 	 * @return
 	 */
-	List<Evaluate> findAllByUserIdOrderByPubDate(Long userId);
+
+
+	List<Evaluate> findAllByUserNameOrderByPubDate(String userName);
 
 	List<Evaluate> findAllByCourseId(int courseId);
 

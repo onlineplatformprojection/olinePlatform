@@ -39,14 +39,13 @@ public class ArticleController {
         article.setArticleTitle(title);
         article.setArticleContent(articleContent);
         article.setPubDate(new Timestamp(new Date().getTime()));
-        if(classify != null & classify.isEmpty()){
-            article.setArticleClassify(classify);
-
-            //如果不存在这个类别就新建
-            if (!classifyService.exitClassifyByName(classify)){
-                Classify classify1 = new Classify(classify);
-                classifyService.save(classify1);
-            }
+        //assert classify != null;
+        if(classify == null || classify.isEmpty()) article.setArticleClassify("其他");
+        else article.setArticleClassify(classify);
+        //如果不存在这个类别就新建
+        if (!classifyService.exitClassifyByName(classify)){
+            Classify classify1 = new Classify(classify);
+            classifyService.save(classify1);
         }
 
         User user = userService.findUserById(userId) ;

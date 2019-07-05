@@ -16,8 +16,8 @@ public class Evaluate {
 	private String evaContent;
 	@Column(name = "c_id", nullable = false)
 	private int courseId;
-	@Column(name = "u_id", nullable = false)
-	private long userId;
+	@Column(name = "u_name", nullable = false)
+	private String userName;
 	@Column(name = "evaluate_date", nullable = false)
 	private Date pubDate;
 
@@ -47,12 +47,12 @@ public class Evaluate {
 		this.courseId = courseId;
 	}
 
-	public long getUserId() {
-		return userId;
+	public String getUserName() {
+		return userName;
 	}
 
-	public void setUserId(long userId) {
-		this.userId = userId;
+	public void setUserName(String userName) {
+		this.userName = userName;
 	}
 
 	public Date getPubDate() {
