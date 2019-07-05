@@ -25,6 +25,8 @@ spring:
     show-sql: true
   thymeleaf:
     cache: false
+  mvc:
+    static-path-pattern: /mlearning/
 
 
 
