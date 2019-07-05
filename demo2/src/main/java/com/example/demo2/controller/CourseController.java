@@ -1,13 +1,11 @@
 package com.example.demo2.controller;
 
+import com.example.demo2.dao.ChapterDao;
 import com.example.demo2.model.Chapter;
 import com.example.demo2.model.Course;
 import com.example.demo2.model.Evaluate;
 import com.example.demo2.model.Purchase;
-import com.example.demo2.service.ChapterService;
-import com.example.demo2.service.CourseService;
-import com.example.demo2.service.EvaluateService;
-import com.example.demo2.service.PurchaseService;
+import com.example.demo2.service.*;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -29,6 +27,8 @@ public class CourseController {
 	private EvaluateService evaluateService;
 	@Resource
 	private PurchaseService purchaseService;
+	@Resource
+	private VideoService videoService;
 
 
 	//首页课程
@@ -46,8 +46,16 @@ public class CourseController {
 		List<Chapter> chapterList = chapterService.findChapterByCourseId(courseId);
 		List<Evaluate> evaluateList = evaluateService.listByCourseId(courseId);
 
+		List<ChapterDao> chapterDaoList = new ArrayList<>();
+
+		for (int i = 0; i < chapterList.size(); i++) {
+			ChapterDao chapterDao = new ChapterDao(chapterList.get(i));
+			chapterDao.setVideoList(videoService.findAllVideoByChapterId(chapterList.get(i).getChaperId()));
+			chapterDaoList.add(chapterDao);
+		}
+
 		map.put("course",course);
-		map.put("chapter",chapterList);
+		map.put("chapter",chapterDaoList);
 		map.put("evaluateList",evaluateList);
 		return map;
 	}
