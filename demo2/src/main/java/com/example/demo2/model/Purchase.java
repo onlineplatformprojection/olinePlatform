@@ -19,8 +19,16 @@ public class Purchase {
 	private long userId;
 	@Column(name = "c_id", nullable = false)
 	private int courseId;
-	@Column(name = "buyDate", nullable = false)
-	private Date pubDate;
+	@Column(name = "buy_date", nullable = false)
+	private Date purDate;
+
+	public Purchase(){}
+
+	public Purchase(int userId, int courseId, Date purDate) {
+		this.userId = userId;
+		this.courseId = courseId;
+		this.purDate = purDate;
+	}
 
 	public int getPurchaseId() {
 		return purchaseId;
@@ -47,10 +55,10 @@ public class Purchase {
 	}
 
 	public Date getPubDate() {
-		return pubDate;
+		return purDate;
 	}
 
-	public void setPubDate(Date pubDate) {
-		this.pubDate = pubDate;
+	public void setPubDate(Date purDate) {
+		this.purDate = purDate;
 	}
 }

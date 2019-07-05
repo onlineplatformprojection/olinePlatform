@@ -1,7 +1,7 @@
-package com.example.demo2.serviceImpl;
+package com.example.demo2.service;
 
 import com.example.demo2.model.Video;
-import com.example.demo2.service.VideoRepository;
+import com.example.demo2.repository.VideoRepository;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -54,5 +54,9 @@ public class VideoService {
 
 	public void deleteVideoByChapterId(int id){
 		videoRepository.deleteByChapterId(id);
+	}
+
+	public List<Video> findAllVideoByChapterId(int chapterId){
+		return videoRepository.findAllByChapterId(chapterId);
 	}
 }

@@ -1,14 +1,14 @@
 package com.example.demo2.controller;
 
 import com.example.demo2.model.User;
-import com.example.demo2.serviceImpl.UserService;
-import org.springframework.ui.Model;
+import com.example.demo2.service.UserService;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashMap;
+import java.util.Map;
 
 @RestController
 public class UserController {
@@ -16,56 +16,53 @@ public class UserController {
 	@Resource
 	UserService userService;
 
+	//登录
+	@RequestMapping("/logIn")
+	public Map logIn(@RequestParam("userId") long userId, @RequestParam("userPwd") String userPwd){
 
-	@RequestMapping("/")
-	public String index() {
-		return "redirect:/list";
+		HashMap map = new HashMap();
+		User user = userService.findUserById(userId);
+		if( user.getUserPwd().equals(userPwd)){
+			map.put("log_status",1);
+			map.put("userId",user.getUserId());
+
+		}else {
+			map.put("log_status",0);
+		}
+
+
+		return map;
 	}
 
-	@RequestMapping("/list")
-	public String list(Model model) {
-		List<User> users=userService.getUserList();
-		model.addAttribute("users", users);
-		return users.get(0).getUserName();
-		//return "user/list";
-	}
-
-	@RequestMapping("/toAdd")
-	public int toAdd() {
-		User user1 = new User();
-		user1.setUserId(8752);
-		user1.setUserName("aBoy");
-		user1.setUserPwd("8752");
-		User user2 = new User();
-		user2.setUserId(8753);
-		user2.setUserName("aGirl");
-		user2.setUserPwd("8752");
-
-		List<User> users = new ArrayList<>();
-		users.add(user1);
-		users.add(user2);
-
-		userService.saveAll(users);
-
-		List<User> users1=userService.getUserList();
-		return users1.size();
-		//return "user/userAdd";
-	}
-
-	@RequestMapping("/add")
-	public String add(User user) {
+	//随机账号注册
+	@RequestMapping("/register")
+	public Map register(@RequestParam("userName") String userName,@RequestParam("userPwd") String userPwd){
+		HashMap map = new HashMap();
+		long account;
+		while (true){
+			account =(int)((Math.random()*9+1)*1000);
+			User user1 = userService.findUserById(account);
+			if(user1 == null) break;
+		}
+		User user = new User(account, userName,userPwd);
 		userService.save(user);
-		return "redirect:/list";
+		user = userService.findUserById(account);
+		if(user == null) map.put("re_true",0);
+		else map.put("re_true", 1);
+		return map;
 	}
 
-	@RequestMapping("/toEdit")
-	public String toEdit(Model model,Long id) {
-		User user=userService.findUserById(id);
-		model.addAttribute("user", user);
-		return "user/userEdit";
+	//带有账号的注册
+	@RequestMapping("/register_id")
+	public Map register_id(@RequestParam("userId")long userId, @RequestParam("userName") String userName,@RequestParam("userPwd") String userPwd){
+		HashMap map = new HashMap();
+		User user = new User(userId, userName,userPwd);
+		userService.save(user);
+		user = userService.findUserById(userId);
+		if(user == null) map.put("re_true",0);
+		else map.put("re_true", 1);
+		return map;
 	}
-
-
 
 }
 

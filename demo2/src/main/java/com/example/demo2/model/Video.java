@@ -20,6 +20,8 @@ public class Video {
 	@Column(name = "chap_id", nullable = false)
 	private int chapterId;
 
+	public Video(){}
+
 	public int getVideoId() {
 		return videoId;
 	}

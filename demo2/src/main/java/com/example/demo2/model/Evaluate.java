@@ -18,8 +18,10 @@ public class Evaluate {
 	private int courseId;
 	@Column(name = "u_id", nullable = false)
 	private long userId;
-	@Column(name = "evaluateDate", nullable = false)
+	@Column(name = "evaluate_date", nullable = false)
 	private Date pubDate;
+
+	public Evaluate(){}
 
 	public int getEvaId() {
 		return evaId;

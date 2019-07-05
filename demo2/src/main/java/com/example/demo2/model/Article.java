@@ -4,6 +4,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import java.sql.Timestamp;
 import java.util.Date;
 
 @Entity
@@ -18,8 +19,10 @@ public class Article {
 	private String articleContent;
 	@Column(name = "u_id", nullable = false)
 	private long userId;
-	@Column(name = "a_publishDate", nullable = false)
-	private Date pubDate;
+	@Column(name = "a_publish_date" )
+	private Timestamp pubDate;
+
+	public Article(){}
 
 	public int getArticleId() {
 		return articleId;
@@ -53,11 +56,11 @@ public class Article {
 		this.userId = userId;
 	}
 
-	public Date getPubDate() {
+	public Timestamp getPubDate() {
 		return pubDate;
 	}
 
-	public void setPubDate(Date pubDate) {
+	public void setPubDate(Timestamp pubDate) {
 		this.pubDate = pubDate;
 	}
 }

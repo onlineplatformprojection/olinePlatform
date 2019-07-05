@@ -1,4 +1,4 @@
-package com.example.demo2.service;
+package com.example.demo2.repository;
 
 import com.example.demo2.model.Video;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -9,6 +9,8 @@ import java.util.List;
 public interface VideoRepository extends JpaRepository<Video, Integer> {
 
 	Video findById(int id);
+
+	List<Video> findAllByChapterId(int id);
 
 	Video findByVideoName(String videoName);
 

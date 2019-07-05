@@ -4,23 +4,26 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import java.sql.Time;
+import java.sql.Timestamp;
 import java.util.Date;
 
 @Entity
 @Table(name = "remark")
-public class Remark {
+public class Remark{
 	@Id
-	@Column(name = "r_id", nullable = false)
+	@Column(name = "R_id", nullable = false)
 	private int remarkId;
-	@Column(name = "remark_content", nullable = false)
+	@Column(name = "Remark_content", nullable = false)
 	private String remarkContent;
-	@Column(name = "a_id", nullable = false)
+	@Column(name = "A_id", nullable = false)
 	private int articleId;
-	@Column(name = "u_id", nullable = false)
+	@Column(name = "U_id", nullable = false)
 	private long userId;
-	@Column(name = "remarkDate", nullable = false)
-	private Date pubDate;
+	@Column(name = "Remark_Date", nullable = false)
+	private Timestamp pubDate;
 
+	public Remark(){}
 
 	public int getRemarkId() {
 		return remarkId;
@@ -54,11 +57,11 @@ public class Remark {
 		this.userId = userId;
 	}
 
-	public Date getPubDate() {
+	public Timestamp getPubDate() {
 		return pubDate;
 	}
 
-	public void setPubDate(Date pubDate) {
+	public void setPubDate(Timestamp pubDate) {
 		this.pubDate = pubDate;
 	}
 }

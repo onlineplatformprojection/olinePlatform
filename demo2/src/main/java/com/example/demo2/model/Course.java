@@ -17,13 +17,15 @@ public class Course {
 	@Column(name = "c_teacher", nullable = false)
 	private String teacher;
 	@Column(name = "c_buyNum", nullable = false)
-	private int buyName;
+	private int buyNum;
 	@Column(name = "c_price", nullable = false)
 	private double price;
 	@Column(name = "c_introduce", nullable = false)
-	private String introdece;
+	private String introduce;
 	@Column(name = "c_img", nullable = false)
 	private String img;
+
+	public Course(){}
 
 	public int getCourseId() {
 		return courseId;
@@ -49,12 +51,12 @@ public class Course {
 		this.teacher = teacher;
 	}
 
-	public int getBuyName() {
-		return buyName;
+	public int getBuyNum() {
+		return buyNum;
 	}
 
-	public void setBuyName(int buyName) {
-		this.buyName = buyName;
+	public void setBuyNum(int buyName) {
+		this.buyNum = buyName;
 	}
 
 	public double getPrice() {
@@ -66,11 +68,11 @@ public class Course {
 	}
 
 	public String getIntrodece() {
-		return introdece;
+		return introduce;
 	}
 
-	public void setIntrodece(String introdece) {
-		this.introdece = introdece;
+	public void setIntrodece(String introduce) {
+		this.introduce = introduce;
 	}
 
 	public String getImg() {

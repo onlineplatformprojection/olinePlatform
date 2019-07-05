@@ -18,6 +18,14 @@ public class User {
 	@Column(name = "u_pwd", nullable = false)
 	private String userPwd;
 
+	public User(){}
+
+	public User(long userId, String userName, String userPwd) {
+		this.userId = userId;
+		this.userName = userName;
+		this.userPwd = userPwd;
+	}
+
 	public long getUserId() {
 		return userId;
 	}

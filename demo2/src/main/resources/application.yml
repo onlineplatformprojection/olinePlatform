@@ -23,8 +23,13 @@ spring:
           auto: update
         dialect: org.hibernate.dialect.MySQL5InnoDBDialect
     show-sql: true
-    spring:
-      thymeleaf:
-        cache: false
+  thymeleaf:
+    cache: false
+
+
+
 server:
   port: 8888
+
+
+

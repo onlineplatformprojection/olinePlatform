@@ -17,6 +17,7 @@ public class Chapter {
 	@Column(name = "c_id", nullable = false)
 	private int courseId;
 
+	public Chapter(){}
 
 	public int getChaperId() {
 		return chaperId;
