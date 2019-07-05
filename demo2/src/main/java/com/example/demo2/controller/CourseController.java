@@ -38,8 +38,8 @@ public class CourseController {
 	}
 
 	//具体的课程请求
-	@RequestMapping("/course_target")
-	public Map course_target(@RequestParam("courseId") int courseId){
+	@RequestMapping("/course_target_detail")
+	public Map course_target_detail(@RequestParam("courseId") int courseId){
 		HashMap map = new HashMap();
 		Course course = courseService.findCourseById(courseId);
 
@@ -56,6 +56,21 @@ public class CourseController {
 
 		map.put("course",course);
 		map.put("chapter",chapterDaoList);
+		map.put("evaluateList",evaluateList);
+		return map;
+	}
+
+	//具体的课程请求
+	@RequestMapping("/course_target")
+	public Map course_target(@RequestParam("courseId") int courseId){
+		HashMap map = new HashMap();
+		Course course = courseService.findCourseById(courseId);
+
+		List<Chapter> chapterList = chapterService.findChapterByCourseId(courseId);
+		List<Evaluate> evaluateList = evaluateService.listByCourseId(courseId);
+
+		map.put("course",course);
+		map.put("chapter",chapterList);
 		map.put("evaluateList",evaluateList);
 		return map;
 	}
